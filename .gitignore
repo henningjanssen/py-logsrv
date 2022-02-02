@@ -1,0 +1,7 @@
+*.log
+*.sqlite
+*.sqlite-journal
+build/
+dist/
+*.egg-info/
+__pycache__/
