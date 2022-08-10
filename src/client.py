@@ -15,6 +15,7 @@ from store import Entry
 class Client:
     def __init__(self, client_type: str, host: str = None, port: int = 6789):
         hostname = f'{host}:{port}' if host is not None else f'{socket.gethostname()}.local:{port}'
+        print('Hostname:', hostname)
         self._client_id = str(uuid4())
         self._client_type = client_type
         self._queue = Queue()
@@ -42,7 +43,7 @@ class Client:
         self._queue.put(str(entry))
 
 if __name__ == '__main__':
-    client = Client('test')
+    client = Client('test')#, '127.0.0.1')
 
     while True:
         payload = {
