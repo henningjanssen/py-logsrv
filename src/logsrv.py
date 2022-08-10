@@ -6,7 +6,7 @@ from server import Server
 if __name__ == '__main__':
     store = MultiStore([
         FileStore('logs.log'),
-        #PrintStore(),
+        PrintStore(),
         SQLiteStore('logs.sqlite'),
     ])
     server = Server(
