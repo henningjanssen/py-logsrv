@@ -10,12 +10,14 @@ class Server:
     def __init__(self, store: Store, host: str = '0.0.0.0', port: int = 6789):
         async def handler(websocket, path):
             nonlocal store
+            print('New connection')
             try:
                 while True:
                     msg = await websocket.recv()
                     entry = Entry(**json.loads(msg))
                     store.store(entry)
             except websockets.exceptions.ConnectionClosed:
+                print('Connection closed')
                 await websocket.close()
             except Exception as e:
                 print('Server client exception:', e)
