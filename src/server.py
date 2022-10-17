@@ -4,7 +4,7 @@ from threading import Thread
 
 import websockets
 
-from store import Entry, Store
+from .store import Entry, Store
 
 class Server:
     def __init__(self, store: Store, host: str = '0.0.0.0', port: int = 6789):
