@@ -10,6 +10,7 @@ class Entry:
     client_id: str
     client_type: str
     timestamp: int
+    data_type: str
     data: dict
 
     def __str__(self):
@@ -18,6 +19,7 @@ class Entry:
                 'client_id': self.client_id,
                 'client_type': self.client_type,
                 'timestamp': self.timestamp,
+                'data_type': self.data_type,
                 'data': self.data,
             },
             separators=(',', ':')
@@ -53,6 +55,7 @@ class SQLiteStore(Store):
                 client_id text not null,
                 client_type text not null,
                 timestamp int not null,
+                data_type text not null,
                 data json
             );
         ''')
@@ -65,11 +68,13 @@ class SQLiteStore(Store):
                     client_id,
                     client_type,
                     timestamp,
+                    data_type,
                     data
                 ) values (
                     :client_id,
                     :client_type,
                     :timestamp,
+                    :data_type,
                     :data
                 )
                 ''',
@@ -77,6 +82,7 @@ class SQLiteStore(Store):
                     'client_id': entry.client_id,
                     'client_type': entry.client_type,
                     'timestamp': entry.timestamp,
+                    'data_type': entry.data_type,
                     'data': json.dumps(entry.data)
                 }
             )
